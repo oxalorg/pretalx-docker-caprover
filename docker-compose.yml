@@ -19,6 +19,8 @@ services:
     labels:
        traefik.docker.network: "pretalxdocker"
        traefik.enable: "true"
+    networks:
+      - captain-overlay-network
 
   db:
     image: mysql:latest
@@ -32,6 +34,8 @@ services:
       MYSQL_PASSWORD: veryunsecureplschange
       MYSQL_RANDOM_ROOT_PASSWORD: "1"
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    networks:
+      - captain-overlay-network
 
   redis:
     image: redis:latest
@@ -39,6 +43,8 @@ services:
     restart: unless-stopped
     volumes: 
       - pretalx-redis:/data
+    networks:
+      - captain-overlay-network
 
 volumes:
   pretalx-db:
@@ -46,3 +52,6 @@ volumes:
   pretalx-public:
   pretalx-redis:
 
+networks:
+  captain-overlay-network:
+    external: true
