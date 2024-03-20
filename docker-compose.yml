@@ -11,7 +11,7 @@ services:
       PRETALX_FILESYSTEM_MEDIA: /public/media
       PRETALX_FILESYSTEM_STATIC: /public/static
     ports:
-      - "80:80"
+      - "8339:80"
     volumes: 
       - ./conf/pretalx.cfg:/etc/pretalx/pretalx.cfg:ro
       - pretalx-data:/data
